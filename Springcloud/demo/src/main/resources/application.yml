@@ -1,0 +1,135 @@
+spring:
+#  数据库配置
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          password: 123456
+          url: jdbc:mysql://10.211.55.19:3306/Demo?characterEncoding=utf8&amp
+          username: root
+        slave1:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          password: 123456
+          url: jdbc:mysql://10.211.55.20:3306/Demo?characterEncoding=utf8&amp
+          username: root
+        slave2:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          password: 123456
+          url: jdbc:mysql://10.211.55.21:3306/Demo?characterEncoding=utf8&amp
+          username: root
+      primary: master
+
+
+
+
+
+#rabbitmq配置
+  rabbitmq:
+    host: 10.211.55.19
+    password: guest
+    port: 5672
+    username: guest
+    virtual-host: /
+    publisher-returns: true #配置消息到达队列的回调。
+      # 开启消息确认机制
+    publisher-confirm-type: correlated #消息到达交换器的确认回调
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+
+
+
+  #    加载循环依赖
+  main:
+    allow-circular-references: true
+#nacos配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.42.246.86:8848
+    sentinel:
+      eager: true #取消Sentinel控制台懒加载,即项目启动即连接
+      transport:
+        dashboard: 10.211.55.19:8080
+#sentinel持久化配置文件
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 101.42.246.86:8848
+            data-id: provder
+            data-type: json
+            rule-type: flow
+
+
+
+#redis配置
+  redis:
+    master:
+      host: 10.211.55.19
+      port: 6379
+      password: 5201314
+      database: 0
+
+    salver1:
+      host: 10.211.55.20
+      port: 6379
+      password: 5201314
+      database: 0
+    salver2:
+      host: 10.211.55.21
+      port: 6379
+      password: 5201314
+      database: 0
+
+    total:
+#      最大空闲连接数
+      MAX_IDLE: 20
+#      最大连接数
+      MAX_TOTAL: 1024
+#      建立连接最长等待时间
+      MAX_WAIT_MILLIS: 10000
+  application:
+    name: provder
+
+
+debug: true
+server:
+  port: 8888
+#
+ribbon:
+  ReadTimeout: 5000           # 建立连接所用时间，适用于网络状况正常的情况下，两端连接所用的时间
+  ConnectTimeout: 10000        # 建立连接后，从服务器读取到的可用资源所用的时间
+#ribben负载均衡
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 随机
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule #配置规则 重试
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #配置规则 响应时间权重
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
+#provder:
+#   ribbon:
+#     NFLoadBalancerRuleClassName: com.southwind.configuration.NacosWeightedRule
+
+#监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+#
+#security:
+#  oauth2:
+#    resource:
+#      user-info-uri:  http://localhost:9006/getuser

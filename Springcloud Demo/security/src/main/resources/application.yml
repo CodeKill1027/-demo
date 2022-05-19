@@ -1,0 +1,22 @@
+server:
+  port: 9008
+
+debug: true
+#  http://localhost:9006/oauth/authorize?response_type=code&client_id=wb&redirect_uri=https://www.baidu.com code换token
+#  http://localhost:9006/oauth/authorize?response_type=token&client_id=wx&redirect_uri=https://www.baidu.com 直接换token
+#  http://localhost:9006/oauth/token?grant_type=password&username=yzj&password=123456  信任第三方
+ # http://localhost:9006/oauth/token?grant_type=client_credentials 客户端
+spring:
+  #  数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://10.211.55.19:3306/Demo?characterEncoding=utf8&amp
+    username: root
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,0 +1,40 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.42.246.86:8848
+
+  application:
+    name: Rpc
+
+debug: true
+server:
+  port: 6667
+
+
+
+
+# 设置feign客户端超时时间（OpenFeign默认支持Ribbon）
+ribbon:
+  ReadTimeout: 5000           # 建立连接所用时间，适用于网络状况正常的情况下，两端连接所用的时间
+  ConnectTimeout: 10000        # 建立连接后，从服务器读取到的可用资源所用的时间
+
+
+
+
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 随机
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule #配置规则 重试
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #配置规则 响应时间权重
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
+
+#与server同级
+logging:
+  level:
+    com.example.Rpc.client: debug
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+spring:
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.42.246.86:8848
+    sentinel:
+      transport:
+        dashboard: 10.211.55.19:8080
+      #sentinel持久化配置文件
+      eager: true #取消Sentinel控制台懒加载,即项目启动即连接
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 101.42.246.86:8848
+            data-id: SpringSource
+            data-type: json
+            rule-type: flow
+
+  redis:
+      host: 10.211.55.19
+      port: 6379
+      password: 5201314
+      database: 0
+  #rabbitmq配置
+  rabbitmq:
+    host: 10.211.55.19
+    password: guest
+    port: 5672
+    username: guest
+    virtual-host: /
+    publisher-returns: true #配置消息到达队列的回调。
+    # 开启消息确认机制
+    publisher-confirm-type: correlated #消息到达交换器的确认回调
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+#  数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://10.211.55.19:3306/Demo?characterEncoding=utf8&amp
+    username: root
+
+
+#    加载循环依赖
+  main:
+    allow-circular-references: true
+
+  application:
+    name: SpringSource
+
+debug: true
+server:
+  port: 8892
+
+#监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+feign:
+  sentinel:
+    enabled: true
+
+

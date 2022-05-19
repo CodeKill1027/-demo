@@ -1,0 +1,28 @@
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  redis:
+    order:
+      host: 182.61.53.209
+      port: 6666
+      password: 5201314
+    user:
+      host: 10.211.55.17
+      port: 6666
+      password: 5201314
+
+
+
+
+
+
+
+
+
+
+
+
+
+

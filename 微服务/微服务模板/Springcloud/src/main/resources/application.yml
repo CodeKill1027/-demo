@@ -1,0 +1,127 @@
+spring:
+#  数据库配置
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          password: 123456
+          url: jdbc:mysql://10.211.55.18:3333/Demo?characterEncoding=utf8&amp
+          username: root
+        slave1:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          password: 123456
+          url: jdbc:mysql://10.211.55.17:3333/Demo?characterEncoding=utf8&amp
+          username: root
+        slave2:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          password: 123456
+          url: jdbc:mysql://10.211.55.16:3333/Demo?characterEncoding=utf8&amp
+          username: root
+      primary: master
+
+
+#rabbitmq配置
+  rabbitmq:
+    host: 10.211.55.18
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+    password: 123456
+    port: 5672
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    username: yzj
+    virtual-host: /
+#    加载循环依赖
+  main:
+    allow-circular-references: true
+#nacos配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.211.55.18:8849
+    sentinel:
+      transport:
+        dashboard: localhost:8480
+#sentinel持久化配置文件
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 10.211.55.18:8849
+            data-id: provder
+            data-type: json
+            rule-type: flow
+
+
+
+#redis配置
+  redis:
+    master:
+      host: 10.211.55.18
+      port: 6666
+      password: 5201314
+      database: 0
+
+    salver1:
+      host: 10.211.55.17
+      port: 6666
+      password: 5201314
+      database: 0
+    salver2:
+      host: 10.211.55.16
+      port: 6666
+      password: 5201314
+      database: 0
+
+    total:
+#      最大空闲连接数
+      MAX_IDLE: 20
+#      最大连接数
+      MAX_TOTAL: 1024
+#      建立连接最长等待时间
+      MAX_WAIT_MILLIS: 10000
+  application:
+    name: provder
+
+
+debug: true
+server:
+  port: 8889
+#
+#ribbon:
+#  ReadTimeout: 5000           # 建立连接所用时间，适用于网络状况正常的情况下，两端连接所用的时间
+#  ConnectTimeout: 10000        # 建立连接后，从服务器读取到的可用资源所用的时间
+#ribben负载均衡
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 随机
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule #配置规则 重试
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #配置规则 响应时间权重
+##NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
+provder:
+   ribbon:
+     NFLoadBalancerRuleClassName: com.southwind.configuration.NacosWeightedRule
+
+#监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    com.yehongzhi.springcloud.consumer.feign.ProviderClient: debug
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+

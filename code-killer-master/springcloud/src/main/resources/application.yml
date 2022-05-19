@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 182.61.53.209:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8480
+
+
+  application:
+    name: provder
+
+
+server:
+  port: 8083
+
+provder:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.southwind.configuration.NacosWeightedRule
+#    基于权重来分配策略  权重越大被请求的概率越大
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
