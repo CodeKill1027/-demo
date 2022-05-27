@@ -1,5 +1,8 @@
-${AnsiColor.BRIGHT_YELLOW}
-////////////////////////////////////////////////////////////////////
+      Spring Boot Version: ${spring-boot.version}
+      Spring Application Name: ${spring.application.name}
+      debug :${debug}
+      port :${ser.port}
+// // // // // // // // // // // // // // // // // // // // // // //
 //                          _ooOoo_                               //
 //                         o8888888o                              //
 //                         88" . "88                              //

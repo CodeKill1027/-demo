@@ -1,11 +1,9 @@
 package com.example.Springcloud.service;
 
-import com.example.Springcloud.util.RedisUtil;
 import org.apache.log4j.Logger;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;

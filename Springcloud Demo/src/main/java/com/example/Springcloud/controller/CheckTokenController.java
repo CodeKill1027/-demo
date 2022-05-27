@@ -2,13 +2,12 @@ package com.example.Springcloud.controller;
 
 import com.alibaba.nacos.common.utils.StringUtils;
 import com.example.Springcloud.annotation.Zhujie;
-import com.example.Springcloud.service.iml.ITokenDao;
+import com.example.Springcloud.pojo.service.iml.ITokenDao;
 import com.example.Springcloud.util.ResultResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @author Cc
@@ -60,6 +59,7 @@ public class CheckTokenController {
         resultResponse.setData("test");
         return resultResponse;
     }
+
 
 
 }

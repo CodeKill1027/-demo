@@ -1,7 +1,10 @@
 package com.example.Springcloud.util;
 
 /**
+ * 基地业务异常
+ *
  * @author yzj
+ * @date 2022/05/21
  */
 public class BaseBusinessException extends RuntimeException {
 
@@ -9,7 +12,7 @@ public class BaseBusinessException extends RuntimeException {
      private String message;
 
     public BaseBusinessException(Integer code,String message) {
-        super(message);
+       this.message = message;
         this.code = code;
     }
 
@@ -20,12 +23,10 @@ public class BaseBusinessException extends RuntimeException {
     public void setCode(Integer code) {
         this.code = code;
     }
-
-
+    @Override
     public String getMessage() {
         return message;
     }
-
     public void setMessage(String message) {
         this.message = message;
     }

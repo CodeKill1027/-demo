@@ -1,5 +1,6 @@
 package com.example.Springcloud.service;
 
+
 import com.example.Springcloud.service.iml.RabbitmqName;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
@@ -8,7 +9,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;

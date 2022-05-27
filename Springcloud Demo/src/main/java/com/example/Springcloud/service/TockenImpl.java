@@ -1,7 +1,7 @@
 package com.example.Springcloud.service;
 
 import com.alibaba.nacos.common.utils.StringUtils;
-import com.example.Springcloud.service.iml.ITokenDao;
+import com.example.Springcloud.pojo.service.iml.ITokenDao;
 import com.example.Springcloud.util.BaseBusinessException;
 import com.example.Springcloud.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,23 +49,20 @@ public class TockenImpl implements ITokenDao {
      * @date 2020/4/21 12:01
      */
     @Override
-    public boolean checkToken(HttpServletRequest request) throws Exception {
+    public boolean checkToken(HttpServletRequest request) {
         String tokenHeader = request.getHeader("token");
-
         if (StringUtils.isEmpty(tokenHeader)) {
             throw new BaseBusinessException(500,"无token,请携带token进行请求");
-            // header和参数中不存在token
+            // header中不存在token
         }
         if (!redisUtil.exists(tokenHeader) ) {
             throw new BaseBusinessException(500,"无效token");
         }
         //删掉请求头token
         boolean remove = redisUtil.remove(tokenHeader);
-
         if (!remove ) {
             throw new BaseBusinessException(500,"redis 删除Key失败");
         }
         return true;
     }
-
 }

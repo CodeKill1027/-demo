@@ -1,10 +1,11 @@
 package com.example.Springcloud.aop;
 
 
+import com.example.Springcloud.util.RedisUtil;
+import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,17 +14,11 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class TransactionAop {
-//    @Pointcut("execution(* com.example.demo.service.impl.runable.*(..))")
-//    public void pc1(){ }
-//
-//    /**
-//     * 回国后
-//     * 提交
-//     * 开始事务
-//     *
-//     * @param joinPoint    连接点
-//     * @param returnObject 返回对象
-//     */
+    static Logger log = Logger.getLogger(TransactionAop.class);
+    @Pointcut("execution(* com.example.Springcloud.controller.Hellocontrol.*(..))")
+    public void pc1() {
+    }
+
 //    @Before(value = "pc1()")
 //    public void beginTransaction(JoinPoint jp) {
 //        System.out.println("before beginTransaction");
@@ -33,13 +28,10 @@ public class TransactionAop {
 //    public void commit(JoinPoint jp) {
 //        System.out.println("after commit");
 //    }
-//
 
 
 //    @AfterReturning(value = "pc1()",returning = "returnObject")
 //    public void afterReturning(JoinPoint joinPoint, Object returnObject) {
-//        System.out.println(returnObject);
-//        System.out.println(joinPoint.getSignature().getName());
 //        System.out.println("afterReturning");
 //    }
 //
@@ -48,20 +40,13 @@ public class TransactionAop {
 //        System.out.println("afterThrowing afterThrowing  rollback");
 //        System.out.println(e.getMessage());
 //    }
-//
-//    @Around(value = "pc1()")
-//    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-//        try {
-//            System.out.println("around");
-//            System.out.println(joinPoint.getSignature().getName());
-//            return joinPoint.proceed();
-//        } catch (Throwable e) {
-//            e.printStackTrace();
-//            throw e;
-//        } finally {
-//
-//        }
-//    }
 
+   @Around("pc1()")
+public Object testCutAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    System.out.println("注解方式AOP拦截开始进入环绕通知.......");
+       Object proceed = joinPoint.proceed();
+    System.out.println("准备退出环绕......");
+    return proceed;
+}
 
 }

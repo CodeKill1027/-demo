@@ -46,7 +46,7 @@ public class RedisUtil {
             result = true;
         } catch (Exception e) {
             logger.error("写入redis数据失败!!!"+"key:"+key+"  value"+value);
-            throw new RedisExceptioniml(-1,"写入redis数据失败!!!");
+            throw new BaseBusinessException(-1,"写入redis数据失败!!!"+"key:"+key+"  value"+value);
         }
         return result;
     }
@@ -68,7 +68,7 @@ public class RedisUtil {
             result = true;
         } catch (Exception e) {
             logger.error("写入redis数据并且设置时间失败!!!"+"key:"+key+"  value"+value);
-            throw new RedisExceptioniml(-1,"写入redis数据并且设置时间失败!!!");
+            throw new BaseBusinessException(-1,"写入redis数据并且设置时间失败!!!"+"key:"+key+"  value"+value);
         }
         return result;
     }
@@ -104,7 +104,7 @@ public class RedisUtil {
                 return true;
             }catch ( Exception e){
                 logger.error("删除redis失败!!!"+key);
-                throw new RedisExceptioniml(-1,"删除redis失败!!!");
+                throw new BaseBusinessException(-1,"删除redis失败!!!"+"key:"+key );
             }
         }
         return false;

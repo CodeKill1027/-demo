@@ -1,5 +1,6 @@
 package com.example.Springcloud.config;
 
+
 import com.example.Springcloud.service.iml.RabbitmqName;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;

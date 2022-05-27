@@ -1,9 +1,8 @@
 package com.example.Springcloud.util;
 
 import com.example.Springcloud.annotation.Zhujie;
-import com.example.Springcloud.service.iml.ITokenDao;
+import com.example.Springcloud.pojo.service.iml.ITokenDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

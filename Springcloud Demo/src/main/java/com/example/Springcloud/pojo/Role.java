@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Role   {
+    
     private String username;
     private String permissions1;
     private String permissions2;
